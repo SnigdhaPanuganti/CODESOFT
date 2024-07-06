@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class CurrencyConverter {
+
+    // Static exchange rates for simplicity
+    // In a real-world scenario, you would fetch these from an API
+    public static double getExchangeRate(String baseCurrency, String targetCurrency) {
+        if (baseCurrency.equals("USD") && targetCurrency.equals("EUR")) {
+            return 0.85; // Example rate
+        } else if (baseCurrency.equals("EUR") && targetCurrency.equals("USD")) {
+            return 1.18; // Example rate
+        } else if (baseCurrency.equals("USD") && targetCurrency.equals("INR")) {
+            return 74.56; // Example rate
+        } else if (baseCurrency.equals("INR") && targetCurrency.equals("USD")) {
+            return 0.013; // Example rate
+        } else {
+            return 1.0; // Default rate for same currency
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Available currencies: USD, EUR, INR");
+        System.out.print("Enter base currency: ");
+        String baseCurrency = scanner.nextLine().toUpperCase();
+
+        System.out.print("Enter target currency: ");
+        String targetCurrency = scanner.nextLine().toUpperCase();
+
+        System.out.print("Enter amount to convert: ");
+        double amount = scanner.nextDouble();
+
+        double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
+        double convertedAmount = amount * exchangeRate;
+
+        System.out.printf("Converted amount: %.2f %s\n", convertedAmount, targetCurrency);
+    }
+}
